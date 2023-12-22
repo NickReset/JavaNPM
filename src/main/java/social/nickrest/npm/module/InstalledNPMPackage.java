@@ -26,6 +26,9 @@ public class InstalledNPMPackage {
         StringBuilder builder = new StringBuilder();
 
         File packageJson = new File(dir, "package.json");
+
+        if(!packageJson.exists()) return;
+
         try(FileReader reader = new FileReader(packageJson)) {
             int i;
             while((i = reader.read()) != -1) {
