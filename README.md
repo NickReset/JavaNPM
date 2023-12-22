@@ -4,7 +4,8 @@
 when initializing the NPM class you can specify the directory where the node_modules folder is located
 ```java
 NPM npm = new NPM(new File("node_modules"));
-    npm.getPackage("express")
+
+npm.getPackage("express")
     .await()
     .install((npmPackage) -> 
         npm.getLogger().info(String.format("Installed %s@%s", npmPackage.getName(), npmPackage.getVersion())
