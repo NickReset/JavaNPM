@@ -90,10 +90,8 @@ public class NPMPackage {
         if(this.hasDependencies()) {
             for(NPMPackage dependency : this.getDependencies()
                     .stream()
-                    .filter(dependency -> !parent.isInstalled(dependency.getName()))
+                    .filter(dependency -> !parent.isInstalled(dependency.getName()) || parent.isOutdated(dependency.getName()))
                     .toArray(NPMPackage[]::new)) {
-
-                if(beingInstalled.contains(dependency.getName())) continue;
 
                 dependency.install((npmPackage) -> parent.getLogger().info(String.format("Installed %s@%s", npmPackage.getName(), npmPackage.getVersion())));
             }
